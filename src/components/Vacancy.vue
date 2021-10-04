@@ -8,10 +8,10 @@
       {{ vacancys.description }}
     </p>
     <div class="is-flex is-justify-content-space-between">
-      <button class="button is-primary mt-4">
+      <button @click="handleApply(vacancys)" class="button is-primary mt-4">
         Apply
       </button>
-      <button @click="handleDelete(vacancys)" class="button is-danger mt-4 ">
+      <button v-if="isAdmin" @click="handleDelete(vacancys)" class="button is-danger mt-4 ">
         Delete
       </button>
     </div>
@@ -26,10 +26,17 @@ export default {
       type: Object,
       required: true,
     },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+    },
   },
   methods: {
     handleDelete(vacancys) {
-      this.$emit("delete",vacancys.id);
+      this.$emit("delete", vacancys.id);
+    },
+    handleApply(vacancys) {
+      alert(`Applied successfully for ${vacancys.title}`);
     },
   },
 };

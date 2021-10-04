@@ -10,10 +10,11 @@
         </p>
       </div>
     </section>
-    <NewVcancy @save="handlesubmit" />
+    <NewVcancy v-if="isAdmin" @save="handlesubmit" />
     <Vacancy
       v-for="vacancy in vacancies"
       :key="vacancy.id"
+      :isAdmin="isAdmin"
       :vacancys="vacancy"
       @delete="handledelete"
     />
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       vacancies,
+      isAdmin: true,
     };
   },
   methods: {
