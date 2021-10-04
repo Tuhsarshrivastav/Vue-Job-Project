@@ -10,9 +10,12 @@
         </p>
       </div>
     </section>
-    <NewVcancy />
-    <Vacancy  v-for="vacancy in vacancies" :key="vacancy.id" :vacancys="vacancy"/>
-      
+    <NewVcancy @save="handlesubmit" />
+    <Vacancy
+      v-for="vacancy in vacancies"
+      :key="vacancy.id"
+      :vacancys="vacancy"
+      @delete="handledelete"
     />
   </div>
 </template>
@@ -25,8 +28,18 @@ export default {
   components: { NewVcancy, Vacancy },
   data() {
     return {
-      vacancies
+      vacancies,
     };
+  },
+  methods: {
+    handlesubmit(formData) {
+      this.vacancies.unshift(formData);
+    },
+    handledelete(vacancyid) {
+      this.vacancies = this.vacancies.filter(
+        (vacancy) => vacancy.id !== vacancyid
+      );
+    },
   },
 };
 </script>

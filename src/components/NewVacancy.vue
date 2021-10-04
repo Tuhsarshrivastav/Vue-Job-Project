@@ -2,7 +2,7 @@
   <div>
     <div class="box">
       <h1 class="title is-5">Create Vacancy</h1>
-      <form>
+      <form @submit.prevent="handlesubmit">
         <input
           v-model="form.title"
           class="input "
@@ -48,6 +48,14 @@ export default {
         description: "",
       },
     };
+  },
+  methods: {
+    handlesubmit() {
+      this.$emit("save", { ...this.form, id: new Date().getTime().toString() });
+      for (let key in this.form) {
+        this.form[key] = "";
+      }
+    },
   },
 };
 </script>

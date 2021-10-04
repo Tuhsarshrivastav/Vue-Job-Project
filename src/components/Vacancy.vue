@@ -7,9 +7,14 @@
     <p>
       {{ vacancys.description }}
     </p>
-    <button class="button is-primary mt-4">
-      Apply
-    </button>
+    <div class="is-flex is-justify-content-space-between">
+      <button class="button is-primary mt-4">
+        Apply
+      </button>
+      <button @click="handleDelete(vacancys)" class="button is-danger mt-4 ">
+        Delete
+      </button>
+    </div>
   </div>
 </template>
 
@@ -20,6 +25,11 @@ export default {
     vacancys: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    handleDelete(vacancys) {
+      this.$emit("delete",vacancys.id);
     },
   },
 };
