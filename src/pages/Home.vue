@@ -3,7 +3,7 @@
     <section class="hero">
       <div class="hero-body">
         <p class="title">
-          Find yoour dream jon today
+          Find yoour dream job today
         </p>
         <p class="subtitle">
           Apply for any vacancies
@@ -11,13 +11,23 @@
       </div>
     </section>
     <NewVcancy />
+    <Vacancy  v-for="vacancy in vacancies" :key="vacancy.id" :vacancys="vacancy"/>
+      
+    />
   </div>
 </template>
 
 <script>
 import NewVcancy from "../components/NewVacancy.vue";
+import Vacancy from "../components/Vacancy.vue";
+import { vacancies } from "../../data";
 export default {
-  components: { NewVcancy },
+  components: { NewVcancy, Vacancy },
+  data() {
+    return {
+      vacancies
+    };
+  },
 };
 </script>
 
